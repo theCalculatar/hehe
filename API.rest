@@ -1,0 +1,10 @@
+### VARIABLES
+@SERVER = http://localhost:3001
+@SERVER1 = http://localhost:3000
+
+
+### GET THINGS
+GET {{SERVER}} 
+
+###mhh
+GET {{SERVER1}}/lee/
