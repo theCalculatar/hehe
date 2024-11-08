@@ -1,10 +1,7 @@
 ### VARIABLES
-@SERVER = http://localhost:3001
-@SERVER1 = http://localhost:3000
+@SERVER = http://localhost:3001/
 
 
 ### GET THINGS
-GET {{SERVER}} 
+GET {{SERVER}}api/todos
 
-###mhh
-GET {{SERVER1}}/lee/
