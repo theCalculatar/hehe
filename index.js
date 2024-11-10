@@ -1,9 +1,4 @@
-const express = require("express");
-const router = require("./routes/userRoutes");
-const app = express();
-
-app.use(express.json());
-app.use("/api/todos", router);
+const app = require('./app')
 
 //test connection
 app.get("", (_, res) => {
@@ -15,3 +10,4 @@ const port = 3001;
 app.listen(port, () => {
   console.log(`Server running at port httpa://localhost:${port}`);
 });
+
