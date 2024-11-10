@@ -11,7 +11,6 @@ module.exports = {
       const results = await pool.query("select * from todo");
       return results.rows;
     } catch (error) {
-      console.log(error);
       throw new Error("Database error while retrieving todos");
     }
   },
@@ -37,13 +36,13 @@ module.exports = {
       throw new Error("error while deleting todo");
     }
   },
-  async updateTodo({ todoID, task, description, status, priority }) {
+  async updateTodo({ id, task, description, status, priority }) {
     try {
       const results = await pool.query(
         "UPDATE todo SET task=$2,description=$3,status=$4,priority=$5 WHERE id=$1 RETURNING *",
-        [todoID, task, description, status, priority]
+        [id, task, description, status, priority]
       );
-      return results.rows[0] || null;
+      return results.rows[0] || null; //if todo with id does not exists return null
     } catch (error) {
       throw new Error("error while updating todo");
     }
