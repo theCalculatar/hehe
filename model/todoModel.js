@@ -11,7 +11,7 @@ module.exports = {
       const results = await pool.query("select * from todo");
       return results.rows;
     } catch (error) {
-      throw new Error("Database error while retrieving todos");
+      throw new Error("Database error while retrieving todos");//needs testing
     }
   },
   async postTodo({ task, description, status, priority }) {
@@ -22,7 +22,7 @@ module.exports = {
       );
       return results.rows[0];
     } catch (error) {
-      throw new Error("error while adding todo");
+      throw new Error("error while adding todo");//needs testing
     }
   },
   async deleteTodo(todoID) {
@@ -33,7 +33,7 @@ module.exports = {
       );
       return results.rows[0] || null; //if todo with id does not exists return null
     } catch (error) {
-      throw new Error("error while deleting todo");
+      throw new Error("error while deleting todo");//needs testing
     }
   },
   async updateTodo({ id, task, description, status, priority }) {
@@ -44,7 +44,7 @@ module.exports = {
       );
       return results.rows[0] || null; //if todo with id does not exists return null
     } catch (error) {
-      throw new Error("error while updating todo");
+      throw new Error("error while updating todo");//needs testing
     }
   },
 };

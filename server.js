@@ -8,6 +8,6 @@ app.get("", (_, res) => {
 const port = 3001;
 
 app.listen(port, () => {
-  console.log(`Server running at port httpa://localhost:${port}`);
+  console.log(`Server running at port http://localhost:${port}`);
 });
 

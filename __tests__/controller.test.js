@@ -154,70 +154,73 @@ describe("[Controller] DELETE - tests", () => {
 });
 
 describe("[Controller] UPDATE - tests", () => {
-    it("UPDATE function should be defined and a function", () => {
-      expect(TodoModel.updateTodo).toBeDefined();
-      expect(typeof TodoModel.updateTodo).toBe("function");
-    });
-  
-    it("UPDATE /api/todos should have 200 status code when todo is updated", async () => {
-      const status = 200;
-  
-      const mockTodo = {
-        id: "5",
-        task: "this is our updating task",
-        description: "this is a nice formatted description",
-        status: "incomplete",
-        priority: "low",
-      };
-  
-      TodoModel.updateTodo.mockResolvedValue(mockTodo);
-  
-      const res = await request(app).put("/api/todos/" + mockTodo.id).send(mockTodo);
-  
-      expect(res.statusCode).toBe(status);
-      expect(TodoModel.updateTodo).toHaveBeenCalledWith(mockTodo);
-    });
-  
-    it("UPDATE /api/todos should have 404 not found requets if todo does not exist", async () => {
-      const status = 404;
-  
-      const mockTodo = {
-        id: "5",
-        task: "this is our updating task",
-        description: "this is a nice formatted description",
-        status: "incomplete",
-        priority: "low",
-      };
-  
-      TodoModel.updateTodo.mockResolvedValue(null);
-  
-      const res = await request(app).put("/api/todos/" + mockTodo.id).send(mockTodo);
-  
-      expect(res.statusCode).toBe(status);
-      expect(TodoModel.updateTodo).toHaveBeenCalledWith(mockTodo);
-    });
-  
-    it("UPDATE /api/todos should return 500 server error if database error ", async () => {
-      const status = 500;
-  
-      const mockTodo = {
-        id: "5",
-        task: "this is our updating task",
-        description: "this is a nice formatted description",
-        status: "incomplete",
-        priority: "low",
-      };
-  
-      TodoModel.updateTodo.mockRejectedValue(
-        new Error("error while updating todo")
-      );
-  
-      const res = await request(app)
-        .put("/api/todos/" + mockTodo.id)
-        .send(mockTodo);
-  
-      expect(res.statusCode).toBe(status);
-      expect(TodoModel.updateTodo).toHaveBeenCalledWith(mockTodo);
-    });
+  it("UPDATE function should be defined and a function", () => {
+    expect(TodoModel.updateTodo).toBeDefined();
+    expect(typeof TodoModel.updateTodo).toBe("function");
   });
-  
+
+  it("UPDATE /api/todos should have 200 status code when todo is updated", async () => {
+    const status = 200;
+
+    const mockTodo = {
+      id: "5",
+      task: "this is our updating task",
+      description: "this is a nice formatted description",
+      status: "incomplete",
+      priority: "low",
+    };
+
+    TodoModel.updateTodo.mockResolvedValue(mockTodo);
+
+    const res = await request(app)
+      .put("/api/todos/" + mockTodo.id)
+      .send(mockTodo);
+
+    expect(res.statusCode).toBe(status);
+    expect(TodoModel.updateTodo).toHaveBeenCalledWith(mockTodo);
+  });
+
+  it("UPDATE /api/todos should have 404 not found requets if todo does not exist", async () => {
+    const status = 404;
+
+    const mockTodo = {
+      id: "5",
+      task: "this is our updating task",
+      description: "this is a nice formatted description",
+      status: "incomplete",
+      priority: "low",
+    };
+
+    TodoModel.updateTodo.mockResolvedValue(null);
+
+    const res = await request(app)
+      .put("/api/todos/" + mockTodo.id)
+      .send(mockTodo);
+
+    expect(res.statusCode).toBe(status);
+    expect(TodoModel.updateTodo).toHaveBeenCalledWith(mockTodo);
+  });
+
+  it("UPDATE /api/todos should return 500 server error if database error ", async () => {
+    const status = 500;
+
+    const mockTodo = {
+      id: "5",
+      task: "this is our updating task",
+      description: "this is a nice formatted description",
+      status: "incomplete",
+      priority: "low",
+    };
+
+    TodoModel.updateTodo.mockRejectedValue(
+      new Error("error while updating todo")
+    );
+
+    const res = await request(app)
+      .put("/api/todos/" + mockTodo.id)
+      .send(mockTodo);
+
+    expect(res.statusCode).toBe(status);
+    expect(TodoModel.updateTodo).toHaveBeenCalledWith(mockTodo);
+  });
+});
