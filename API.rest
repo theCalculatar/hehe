@@ -2,6 +2,40 @@
 @SERVER = http://localhost:3001/
 
 
-### GET THINGS
+###POST
+POST {{SERVER}}api/todos
+content-type: application/json
+
+{
+    "task":"new task",
+    "description":"njee!",
+    "status": "incomple",
+    "priority":"medium"
+}
+
+### GET todos
 GET {{SERVER}}api/todos
 
+### DELETE todos
+DELETE {{SERVER}}api/todos/4
+
+### UPDATE todo
+PUT {{SERVER}}api/todos/88 HTTP/1.1
+content-type: application/json
+
+{
+    "task":"updated task 2",
+    "description":"yi le!",
+    "status": "completed",
+    "priority":"hight"
+}
+
+### UPDATE todo bad req
+PUT {{SERVER}}api/todos/7 HTTP/1.1
+content-type: application/json
+
+{
+    "description":"yi le!",
+    "status": "completed",
+    "priority":"hight"
+}

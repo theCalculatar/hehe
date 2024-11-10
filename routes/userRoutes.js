@@ -12,6 +12,6 @@ router.post("/", addTodos);
 router.delete("/:todoID", deleteTodos);
 
 // ROUTER: update todo gievn ID
-router.put("/:todoID", deleteTodos);
+router.put("/:todoID", updateTodos);
 
 module.exports = router
