@@ -10,7 +10,7 @@ const getTodos = async (_, response) => {
   }
 };
 
-const deleteTodos = async (req, response, next) => {
+const deleteTodos = async (req, response) => {
   const { todoID } = req.params;
 
   if (isNaN(Number(todoID)))
@@ -33,7 +33,13 @@ const updateTodos = async (req, response, next) => {
   const { todoID } = req.params;
   const { task, description, status, priority } = req.body;
 
-  if (isNaN(Number(todoID)) || !task || !description || !status || !priority)
+  if (
+    isNaN(Number(todoID)) ||
+    !task.toString().trim() ||
+    !description.toString().trim() ||
+    !status.toString().trim() ||
+    !priority.toString().trim()
+  )
     return response.status(400).json({ err: `bad request` });
   try {
     const results = await db.updateTodo({
@@ -58,7 +64,12 @@ const updateTodos = async (req, response, next) => {
 const addTodos = async (req, response) => {
   const { task, description, status, priority } = req.body;
 
-  if (!task || !description || !status || !priority)
+  if (
+    !task.toString().trim() ||
+    !description.toString().trim() ||
+    !status.toString().trim() ||
+    !priority.toString().trim()
+  )
     return response.status(400).json({ err: `bad request` });
   try {
     const results = await db.postTodo({
