@@ -1,5 +1,3 @@
-const { errorMonitor } = require("supertest/lib/test.js");
-const todoModel = require("../model/todoModel.js");
 const db = require("../model/todoModel.js");
 
 //gets todos
